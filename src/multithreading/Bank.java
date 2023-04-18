@@ -19,7 +19,8 @@ public class Bank implements Runnable {
         try {
             BigDecimal balance = account.getBalance().add(money);
             account.setBalance(balance);
-            System.out.println(Thread.currentThread().getName() + " " + money + "$ were deposited to the account number " + account.getNumber());
+            System.out.println(Thread.currentThread().getName() + " " +
+                    money + "$ were deposited to the account number " + account.getNumber());
         } finally {
             locker.unlock();
         }
@@ -31,9 +32,11 @@ public class Bank implements Runnable {
             BigDecimal balance = account.getBalance();
             if (balance.compareTo(money) == 1) {
                 account.setBalance(account.getBalance().subtract(money));
-                System.out.println(Thread.currentThread().getName() + " " + money + "$ were withdrew from account number " + account.getNumber());
+                System.out.println(Thread.currentThread().getName() + " " +
+                        money + "$ were withdrew from account number " + account.getNumber());
             } else {
-                System.out.println(Thread.currentThread().getName() + " WARN! Insufficient funds on account number " + account.getNumber());
+                System.out.println(Thread.currentThread().getName() +
+                        " WARN! Insufficient funds on account number " + account.getNumber());
             }
         } finally {
             locker.unlock();
